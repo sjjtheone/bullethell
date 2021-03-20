@@ -100,7 +100,6 @@ class MyGame(arcade.Window):
         self.background_layer1 = arcade.SpriteList()
         self.background_layer2 = arcade.SpriteList()
         self.background_layer3 = arcade.SpriteList()
-        self.background_layer4 = arcade.SpriteList()
 
         menemy = Boss("sprite/boss.png",1,self.enemy_bullet_list,INITIAL_FIRING_INTERVAL)
         menemy.center_x = SCREEN_WIDTH/2
@@ -112,12 +111,14 @@ class MyGame(arcade.Window):
         self.player_ship.center_x = SCREEN_WIDTH/2
         self.player_ship.center_y = 100
         self.player.append(self.player_ship)
-        
-        # ebullet = arcade.Sprite("images/sprite/bullet_128.png",HALF_SCALE)
-        # pbullet = arcade.Sprite("images/sprite/bullet_nice.png",HALF_SCALE)
+
+        self.background_layer4 = arcade.load_texture("sprite/background.jpg")
 
     def on_draw(self):
         arcade.start_render()
+
+        arcade.draw_lrwh_rectangle_textured(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, self.background_layer4)
+
         self.player.draw()
         self.enemy.draw()
         self.enemy_bullet_list.draw()
